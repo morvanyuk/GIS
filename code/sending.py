@@ -1,10 +1,16 @@
 '''Classes for sending message by using RabbitMQ'''
 
 import pika
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
 
 # RabbitMQ connection
-connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost'))
+
+params = pika.URLParameters(f"amqp://{env('BROCKER_USER')}:{env('BROCKER_USER')}@{env('BROCKER_HOST')}:{env('BROCKER_PORT')}/")
+connection = pika.BlockingConnection(params)
 channel = connection.channel()
 
 

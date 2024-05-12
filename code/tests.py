@@ -1,9 +1,9 @@
 import unittest
-from models import Point, TwoPoints, Restaurant, Order
+from src.models import Point, TwoPoints, Restaurant, Order
 import pika
-from sending import SendingForOwner, SendingForService
+from src.sending import SendingForOwner, SendingForService
 
-from sending import channel
+from src.sending import channel
  
 class TestStringMethods(unittest.TestCase):
 

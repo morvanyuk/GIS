@@ -1,4 +1,5 @@
 import psycopg
+import pika
 import environ
 from sending import channel, SendingForOwner, SendingForService
 from models import Point, TwoPoints, Restaurant, Order
@@ -6,6 +7,10 @@ from models import Point, TwoPoints, Restaurant, Order
 # Env
 env = environ.Env()
 environ.Env.read_env()
+
+# params = pika.URLParameters(f"amqp://{env('BROCKER_USER')}:{env('BROCKER_USER')}@{env('BROCKER_HOST')}:{env('BROCKER_PORT')}/")
+# connection = pika.BlockingConnection(params)
+# channel = connection.channel()
 
 #postgres
 conn = psycopg.connect(dbname=env('DB_NAME'), user=env('DB_USER'), 

@@ -1,8 +1,6 @@
 import pika
 
-connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost'))
-channel = connection.channel()
+from src.sending import channel, connection
 
 channel.exchange_declare(exchange='gis', exchange_type='direct', auto_delete=False)
 
