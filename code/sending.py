@@ -1,18 +1,9 @@
 '''Classes for sending message by using RabbitMQ'''
 
-import pika
-import environ
+from connections import brocker
 
-env = environ.Env()
-environ.Env.read_env()
-
-
-# RabbitMQ connection
-
-params = pika.URLParameters(f"amqp://{env('BROCKER_USER')}:{env('BROCKER_USER')}@{env('BROCKER_HOST')}:{env('BROCKER_PORT')}/")
-connection = pika.BlockingConnection(params)
-channel = connection.channel()
-
+# RabbitMQ
+channel = brocker.channel()
 
 class SendingForOwner:
     def __init__(self, properties, body):

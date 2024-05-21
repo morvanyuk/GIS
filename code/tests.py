@@ -1,10 +1,12 @@
 import unittest
-from src.models import Point, TwoPoints, Restaurant, Order
+from models import Point, TwoPoints, Restaurant, Order
+from sending import SendingForOwner, SendingForService
+from connections import brocker
 import pika
-from src.sending import SendingForOwner, SendingForService
 
-from src.sending import channel
- 
+# RabbitMQ
+channel = brocker.channel()
+
 class TestStringMethods(unittest.TestCase):
 
     '''Testing Pydantic models'''

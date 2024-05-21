@@ -12,10 +12,9 @@ class DB_Connecter:
     password: str = env('DB_PASSWORD')
     db: str = env('DB_NAME')
 
-    @property
-    def connection(self, *args, **kwds):
+    def __init__(self, *args, **kwds):
         conn = psycopg.connect(dbname=self.db, user=self.user, password=self.password, host=self.host, port=self.port)
-        return conn
+        self.connection = conn
 
 class Rabbit_Connecter:
     port: int = env('BROCKER_PORT')
@@ -28,7 +27,5 @@ class Rabbit_Connecter:
         connection = pika.BlockingConnection(params)
         return connection
 
-db = DB_Connecter()
-brocker = Rabbit_Connecter()
-
-print(db, brocker)
+brocker = Rabbit_Connecter().connection
+db = DB_Connecter().connection

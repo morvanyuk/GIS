@@ -1,6 +1,6 @@
-import pika
+from connections import brocker
 
-from src.sending import channel, connection
+channel = brocker.channel()
 
 channel.exchange_declare(exchange='gis', exchange_type='direct', auto_delete=False)
 
@@ -20,4 +20,4 @@ channel.queue_bind(queue='get_restaurant', exchange='gis', routing_key='get_rest
 channel.queue_bind(queue='add_order', exchange='gis', routing_key='add_order')
 channel.queue_bind(queue='remove_order', exchange='gis', routing_key='remove_order')
 
-connection.close()
+brocker.close()
