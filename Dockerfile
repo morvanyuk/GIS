@@ -1,11 +1,14 @@
 FROM python:3.12
 
-WORKDIR /chat
+WORKDIR /code
 
-COPY . /chat
+COPY /code /code
+COPY requirements.txt /code
 
 RUN pip install -r requirements.txt
 
+
 RUN python3 start.py
 
-CMD ["python3", "run.py"]
+CMD [ "python3", 'run.py']
+
